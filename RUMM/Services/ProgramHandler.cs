@@ -7,6 +7,7 @@ using Discord.Addons.Hosting;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
+using RUMM.Method;
 
 namespace RUMM.Services
 {
@@ -28,10 +29,24 @@ namespace RUMM.Services
         public override async Task InitializeAsync(CancellationToken cancellationToken)
         {
             _client.Ready += OnReady;
+            _client.JoinedGuild += OnJoinedGuild;
             _client.MessageReceived += OnMessageReceived;
 
             _service.CommandExecuted += OnCommandExecuted;
             await _service.AddModulesAsync(Assembly.GetEntryAssembly(), _provider);
+        }
+
+        private async Task OnJoinedGuild(SocketGuild arg)
+        {
+            var id = (arg as SocketGuild).Id;
+            
+            Setup.CreateSetupFolder(id.ToString());
+
+            await _client.SetStatusAsync(UserStatus.Idle);
+
+            await Task.Delay(3000);
+
+            await _client.SetStatusAsync(UserStatus.Online);
         }
 
         private async Task OnReady()
