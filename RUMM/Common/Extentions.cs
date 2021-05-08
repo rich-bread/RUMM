@@ -56,5 +56,22 @@ namespace RUMM.Common
             var message = await channel.SendMessageAsync(embed: embed);
             return message;
         }
+
+        public static async Task<IMessage> SendVerifyAsync(this ISocketMessageChannel channel, string title, string description)
+        {
+            var embed = new EmbedBuilder()
+                .WithColor(new Color(22, 194, 242))
+                .WithDescription(description)
+                .WithAuthor(author =>
+                {
+                    author
+                    .WithIconUrl("https://www.fpsa.org/wp-content/uploads/icons8-ok-528.png")
+                    .WithName(title);
+                })
+                .Build();
+
+            var message = await channel.SendMessageAsync(embed: embed);
+            return message;
+        }
     }
 }
