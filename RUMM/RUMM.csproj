@@ -28,7 +28,6 @@
   <ItemGroup>
     <Folder Include="Modules\Integration\Designed\" />
     <Folder Include="Modules\Integration\Designed\Realm3rd\" />
-    <Folder Include="Modules\Integration\Original\" />
     <Folder Include="Modules\Moderation\" />
   </ItemGroup>
 
