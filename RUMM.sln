@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RUMM", "RUMM\RUMM.csproj", "{3020B28E-BF99-48BC-9E0A-BC6E90FF704D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3020B28E-BF99-48BC-9E0A-BC6E90FF704D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3020B28E-BF99-48BC-9E0A-BC6E90FF704D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3020B28E-BF99-48BC-9E0A-BC6E90FF704D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3020B28E-BF99-48BC-9E0A-BC6E90FF704D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3D48D85B-F04B-4871-8F7D-3E0241FC11D2}
+	EndGlobalSection
+EndGlobal
