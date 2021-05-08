@@ -7,7 +7,7 @@ namespace RUMM.Method
     {
         public static void CreateSetupFolder(string id)
         {
-            string serverfolder = $@"R:\Project\RUMM\.warehouse\{id}";
+            string serverfolder = $@"R:\Project\RUMM.warehouse\{id}";
 
             try
             {
@@ -53,6 +53,33 @@ namespace RUMM.Method
             //切り取りモードテキストファイルの作成・書き込み
             string defaulttrimmode = "0";
             FileSafe.SafeCreateFile_and_Write(trimmode_txt, defaulttrimmode);
+        }
+
+        public static void DeleteSetupFolder(string id)
+        {
+            string serverfolder = $@"R:\Project\RUMM.warehouse\{id}";
+
+            try
+            {
+                string[] filepaths = Directory.GetFiles(serverfolder);
+                foreach (string filepath in filepaths)
+                {
+                    File.SetAttributes(filepath, FileAttributes.Normal);
+                    File.Delete(filepath);
+                }
+
+                string[] directorypaths = Directory.GetDirectories(serverfolder);
+                foreach (string directorypath in directorypaths)
+                {
+                    Directory.Delete(directorypath, true);
+                }
+
+                Directory.Delete(serverfolder, false);
+            }
+            catch (Exception reason)
+            {
+                Console.WriteLine(reason);
+            }
         }
     }
 }
