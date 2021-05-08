@@ -3,7 +3,7 @@ using Discord.WebSocket;
 using RUMM.Common;
 using System.Threading.Tasks;
 
-namespace RUMM.Modules.Integration.Original
+namespace RUMM.Modules.Integration
 {
     public class setup : ModuleBase<SocketCommandContext>
     {
