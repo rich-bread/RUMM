@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Discord;
 using Discord.Addons.Hosting;
+using Discord.Addons.Interactive;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
@@ -50,7 +51,10 @@ namespace RUMM
                 })
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddHostedService<ProgramHandler>();
+                    services
+                        .AddHostedService<ProgramHandler>()
+                        .AddSingleton<InteractiveService>();
+
                 })
                 .UseConsoleLifetime();
 
