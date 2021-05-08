@@ -30,6 +30,7 @@ namespace RUMM.Services
         {
             _client.Ready += OnReady;
             _client.JoinedGuild += OnJoinedGuild;
+            _client.LeftGuild += OnLeftGuild;
             _client.MessageReceived += OnMessageReceived;
 
             _service.CommandExecuted += OnCommandExecuted;
@@ -42,9 +43,14 @@ namespace RUMM.Services
             
             Setup.CreateSetupFolder(id.ToString());
 
-            await _client.SetStatusAsync(UserStatus.Idle);
+            await _client.SetStatusAsync(UserStatus.Online);
+        }
 
-            await Task.Delay(3000);
+        private async Task OnLeftGuild(SocketGuild arg)
+        {
+            var id = (arg as SocketGuild).Id;
+
+            Setup.DeleteSetupFolder(id.ToString());
 
             await _client.SetStatusAsync(UserStatus.Online);
         }
