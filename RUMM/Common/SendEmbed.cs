@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace RUMM.Common
 {
-    public static class Extentions
+    public static class SendEmbed
     {
         public static async Task<IMessage> SendSuccessAsync(this ISocketMessageChannel channel, string title, string description)
         {
