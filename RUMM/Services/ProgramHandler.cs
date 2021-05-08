@@ -27,9 +27,16 @@ namespace RUMM.Services
 
         public override async Task InitializeAsync(CancellationToken cancellationToken)
         {
+            _client.Ready += OnReady;
             _client.MessageReceived += OnMessageReceived;
+
             _service.CommandExecuted += OnCommandExecuted;
             await _service.AddModulesAsync(Assembly.GetEntryAssembly(), _provider);
+        }
+
+        private async Task OnReady()
+        {
+            await _client.SetGameAsync("v0.2.0", null, ActivityType.Playing);
         }
 
         private async Task OnMessageReceived(SocketMessage arg)
