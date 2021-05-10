@@ -2,6 +2,7 @@
 using Discord.Commands;
 using RUMM.Common;
 using RUMM.Method;
+using System;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -27,8 +28,7 @@ namespace RUMM.Modules.Integration.Original
 
             string trimedfolder = $@"{serverfolder}\Trimed";
             string trimedfolder_map = $@"{trimedfolder}\TrimedMap";
-            string trimedfolder_map_x128 = $@"{trimedfolder}\TrimedMap[x128]";
-            string trimedfolder_map_x256 = $@"{trimedfolder}\TrimedMap[x256]";
+            string trimedfolder_map_backup = $@"{trimedfolder}\TrimedMap[Backup]";
 
             //データ用テキストファイルの指定
             string recenter_txt = $@"{datafolder_recenter}\recenter.txt";
@@ -106,6 +106,7 @@ namespace RUMM.Modules.Integration.Original
             myWebClient.DownloadFile(url, uploadedmap);
 
             string x_numbering, z_numbering;
+            
             //
             string trimmode = File.ReadLines(trimmode_txt).First();
 
@@ -125,16 +126,20 @@ namespace RUMM.Modules.Integration.Original
                 z_numbering = z;
             }
 
+            //
             string trimedmap = $@"{trimedfolder_map}\{x_numbering},{z_numbering}.png";
 
-            string trimedmap_x128 = $@"{trimedfolder_map_x128}\{x_numbering},{z_numbering}.png";
-            string trimedmap_x256 = $@"{trimedfolder_map_x256}\{x_numbering},{z_numbering}.png";
-
             Call.Device(uploadedmap, trimedmap);
-
             Graphic.Resize_Own(trimedmap, 384);
-            Graphic.Resize_Copy(trimedmap, trimedmap_x128, 128);
-            Graphic.Resize_Copy(trimedmap, trimedmap_x256, 256);
+
+            //
+            string trimedfolder_map_backup_foreach = $@"{trimedfolder_map_backup}\{x_numbering},{z_numbering}";
+            string trimedmap_backup = $@"{trimedfolder_map_backup_foreach}\{DateTime.Now.ToString("yyyyMMdd")}.png";
+
+            if (!Directory.Exists(trimedfolder_map_backup_foreach))
+                Directory.CreateDirectory(trimedfolder_map_backup_foreach);
+
+            File.Copy(trimedmap, trimedmap_backup, true);
 
             await Context.Channel.SendSuccessAsync("完了", "アップロードされた画像を指定された位置の地図として定義したよ！");
         }

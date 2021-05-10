@@ -16,27 +16,26 @@ namespace RUMM.Method
                 mainfolder.Create();
 
                 //「データ」フォルダー作成
-                DirectoryInfo datamain = mainfolder.CreateSubdirectory("Data");                         //「データ」全体フォルダー
-                DirectoryInfo data_recenter = datamain.CreateSubdirectory("Recenter");                  //「データ」中心座標フォルダー
-                DirectoryInfo data_trimmode = datamain.CreateSubdirectory("Trimmode");                  //「データ」切り取りモードフォルダー
-                DirectoryInfo data_area = datamain.CreateSubdirectory("Area");                          //「データ」エリアフォルダー
+                DirectoryInfo datamain = mainfolder.CreateSubdirectory("Data");                                     //「データ」全体フォルダー
+                DirectoryInfo data_recenter = datamain.CreateSubdirectory("Recenter");                              //「データ」中心座標フォルダー
+                DirectoryInfo data_trimmode = datamain.CreateSubdirectory("Trimmode");                              //「データ」切り取りモードフォルダー
+                DirectoryInfo data_area = datamain.CreateSubdirectory("Area");                                      //「データ」エリアフォルダー
 
                 //「アップロード」フォルダー作成
-                DirectoryInfo uploadedmain = mainfolder.CreateSubdirectory("Uploaded");                 //「アップロード」全体フォルダー
-                DirectoryInfo uploadedmap = uploadedmain.CreateSubdirectory("UploadedMap");             //「アップロード」地図フォルダー(一時的にアップロードされたものを置いておく場所)
+                DirectoryInfo uploadedmain = mainfolder.CreateSubdirectory("Uploaded");                             //「アップロード」全体フォルダー
+                DirectoryInfo uploadedmap = uploadedmain.CreateSubdirectory("UploadedMap");                         //「アップロード」地図フォルダー(一時的にアップロードされたものを置いておく場所)
 
                 //「切り取り」フォルダー作成
-                DirectoryInfo trimedmain = mainfolder.CreateSubdirectory("Trimed");                     //「切り取り」全体フォルダー
-                DirectoryInfo trimedmap = trimedmain.CreateSubdirectory("TrimedMap");                   //「切り取り」地図フォルダー
-                DirectoryInfo trimedmap_x128 = trimedmain.CreateSubdirectory("TrimedMap[x128]");
-                DirectoryInfo trimedmap_x256 = trimedmain.CreateSubdirectory("TrimedMap[x256]");
-                DirectoryInfo trimedmap_pre = trimedmain.CreateSubdirectory("TrimedMap[Pre]");
-                DirectoryInfo trimedmap_backup = trimedmain.CreateSubdirectory("TrimedMap[Backup]");    //「切り取り」地図[バックアップ]フォルダー
+                DirectoryInfo trimedmain = mainfolder.CreateSubdirectory("Trimed");                                 //「切り取り」全体フォルダー
+                DirectoryInfo trimedmap = trimedmain.CreateSubdirectory("TrimedMap");                               //「切り取り」地図フォルダー
+                DirectoryInfo trimedmap_pre = trimedmain.CreateSubdirectory("TrimedMap[Pre]");                      //「切り取り」地図フォルダー(一時的に切り取りしたものを置いておく場所)
+                DirectoryInfo trimedmap_backup = trimedmain.CreateSubdirectory("TrimedMap[Backup]");                //「切り取り」地図[バックアップ]フォルダー
 
                 //「完了」フォルダー作成
-                DirectoryInfo completedmain = mainfolder.CreateSubdirectory("Completed");               //「完了」全体フォルダー
-                DirectoryInfo completedmain_map = completedmain.CreateSubdirectory("CompletedMap");     //「完了」地図フォルダー
-                DirectoryInfo completedarea_map = completedmain.CreateSubdirectory("AreaMap");          //「完了」エリア地図フォルダー
+                DirectoryInfo completedmain = mainfolder.CreateSubdirectory("Completed");                           //「完了」全体フォルダー
+                DirectoryInfo completedmain_map = completedmain.CreateSubdirectory("CompletedMap");                 //「完了」地図フォルダー
+                DirectoryInfo completedmain_map_backup = completedmain.CreateSubdirectory("CompletedMap[Backup]");  //「完了」地図[バックアップ]フォルダー
+                DirectoryInfo completedarea_map = completedmain.CreateSubdirectory("AreaMap");                      //「完了」エリア地図フォルダー
             }
             catch (Exception reason)
             {

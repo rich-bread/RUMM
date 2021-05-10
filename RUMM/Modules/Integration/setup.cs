@@ -12,7 +12,7 @@ namespace RUMM.Modules.Integration
         {
             Method.Setup.CreateSetupFolder(Context.Guild.Id);
 
-            await Context.Channel.SendSuccessAsync("完了", "セットアップしたよ！");
+            await Context.Channel.SendSuccessAsync("完了", "セットアップに成功したよ！");
         }
     }
 }

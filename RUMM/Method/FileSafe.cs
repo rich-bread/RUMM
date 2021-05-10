@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
 namespace RUMM.Method
 {
@@ -9,31 +6,26 @@ namespace RUMM.Method
     {
         public static FileStream SafeCreateFile(string path)
         {
-            if (File.Exists(path))
+            if (!File.Exists(path))
             {
-                Console.WriteLine(path + "already exists.");
-
-                return null;
+                return File.Create(path);
             }
-            return File.Create(path);
+            else
+                return null;
         }
 
         public static void SafeCreateFile_and_Write(string path, string text)
         {
-            if (File.Exists(path))
-            {
-                Console.WriteLine("Could not create and write due to specified file exists.");
-            }
-            else
+            if (!File.Exists(path))
             {
                 using (var file = File.Create(path))
                 {
                     file.Close();
                 }
                 File.WriteAllText(path, text);
-
-                Console.WriteLine("Written successfully.");
             }
+            else
+                return;
         }
     }
 }

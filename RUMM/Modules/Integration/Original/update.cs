@@ -30,8 +30,7 @@ namespace RUMM.Modules.Integration.Original
             string trimedfolder = $@"{serverfolder}\Trimed";
             string trimedfolder_map = $@"{trimedfolder}\TrimedMap";
             string trimedfolder_map_pre = $@"{trimedfolder}\TrimedMap[Pre]";
-            string trimedfolder_map_x128 = $@"{trimedfolder}\TrimedMap[x128]";
-            string trimedfolder_map_x256 = $@"{trimedfolder}\TrimedMap[x256]";
+            string trimedfolder_map_backup = $@"{trimedfolder}\TrimedMap[Backup]";
 
             //データ用テキストファイルの指定
             string recenter_txt = $@"{datafolder_recenter}\recenter.txt";
@@ -130,15 +129,14 @@ namespace RUMM.Modules.Integration.Original
                     string mapzcoord = premapnum.Split(',')[1].Replace("[await].png", "");
 
                     string trimedmap = $@"{trimedfolder_map}\{mapxcoord},{mapzcoord}.png";
-                    string trimedmap_x128 = $@"{trimedfolder_map_x128}\{mapxcoord},{mapzcoord}.png";
-                    string trimedmap_x256 = $@"{trimedfolder_map_x256}\{mapxcoord},{mapzcoord}.png";
+
+                    string trimedfolder_map_backup_foreach = $@"{trimedfolder_map_backup}\{mapxcoord},{mapzcoord}";
+                    string trimedmap_backup = $@"{trimedfolder_map_backup_foreach}\{DateTime.Now.ToString("yyyyMMdd")}.png";
 
                     File.Copy(premapnum, trimedmap, true);
+                    File.Copy(premapnum, trimedmap_backup, true);
 
                     File.Delete(premapnum);
-
-                    Graphic.Resize_Copy(trimedmap, trimedmap_x128, 128);
-                    Graphic.Resize_Copy(trimedmap, trimedmap_x256, 256);
                 }
 
                 await Context.Channel.SendSuccessAsync("完了", "正常に画像を切り取ったよ！");
