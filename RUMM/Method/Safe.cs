@@ -4,7 +4,16 @@ namespace RUMM.Method
 {
     public static class Safe
     {
-        public static FileStream SafeCreateFile(string path)
+        public static DirectoryInfo CreateDirectory(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                return null;
+            }
+            return Directory.CreateDirectory(path);
+        }
+
+        public static FileStream CreateFile(string path)
         {
             if (!File.Exists(path))
             {
@@ -14,7 +23,7 @@ namespace RUMM.Method
                 return null;
         }
 
-        public static void SafeCreateFile_and_Write(string path, string text)
+        public static void CreateFile_and_Write(string path, string text)
         {
             if (!File.Exists(path))
             {
