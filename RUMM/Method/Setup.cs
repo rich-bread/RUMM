@@ -30,6 +30,7 @@ namespace RUMM.Method
                 DirectoryInfo trimedmap = trimedmain.CreateSubdirectory("TrimedMap");                   //「切り取り」地図フォルダー
                 DirectoryInfo trimedmap_x128 = trimedmain.CreateSubdirectory("TrimedMap[x128]");
                 DirectoryInfo trimedmap_x256 = trimedmain.CreateSubdirectory("TrimedMap[x256]");
+                DirectoryInfo trimedmap_pre = trimedmain.CreateSubdirectory("TrimedMap[Pre]");
                 DirectoryInfo trimedmap_backup = trimedmain.CreateSubdirectory("TrimedMap[Backup]");    //「切り取り」地図[バックアップ]フォルダー
 
                 //「完了」フォルダー作成
