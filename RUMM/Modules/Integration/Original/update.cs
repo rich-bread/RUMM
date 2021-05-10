@@ -37,6 +37,13 @@ namespace RUMM.Modules.Integration.Original
             string recenter_txt = $@"{datafolder_recenter}\recenter.txt";
             string trimmode_txt = $@"{datafolder_trimmode}\trimmode.txt";
 
+            //メッセージに画像が添付されているかどうかを判断
+            if (!Context.Message.Attachments.Any())
+            {
+                await Context.Channel.SendErrorAsync("エラー", "画像が添付されてないよ！必ずコマンドと併せて画像を送信してね！");
+                return;
+            }
+
             //Discordに送信されたメッセージとそのメッセージに付いているファイルを取得
             var attachments = Context.Message.Attachments;
 

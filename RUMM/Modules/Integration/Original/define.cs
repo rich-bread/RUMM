@@ -36,6 +36,14 @@ namespace RUMM.Modules.Integration.Original
 
             string definedmap = $@"{trimedfolder_map}\{x},{z}.png";
 
+            //メッセージに画像が添付されているかどうかを判断
+            if (!Context.Message.Attachments.Any())
+            {
+                await Context.Channel.SendErrorAsync("エラー", "画像が添付されてないよ！必ずコマンドと併せて画像を送信してね！");
+                return;
+            }
+
+            //既に定義されている地図がある場合、再定義をしてもよいかどうかの確認を取る
             if (File.Exists(definedmap))
             {
                 var msg_definedmap = await Context.Channel.SendFileAsync(definedmap);
