@@ -118,15 +118,13 @@ namespace RUMM.Modules.Integration.Original
             }
 
             string trimedmap = $@"{trimedfolder_map}\{x_numbering},{z_numbering}.png";
-            string trimedmap2 = $@"{trimedfolder_map}\{x_numbering},{z_numbering}-2.png";
 
             string trimedmap_x128 = $@"{trimedfolder_map_x128}\{x_numbering},{z_numbering}.png";
             string trimedmap_x256 = $@"{trimedfolder_map_x256}\{x_numbering},{z_numbering}.png";
 
             Call.Device(uploadedmap, trimedmap);
-            File.Copy(trimedmap, trimedmap2);
 
-            Graphic.Resize_Own(trimedmap, trimedmap2, 384);
+            Graphic.Resize_Own(trimedmap, 384);
             Graphic.Resize_Copy(trimedmap, trimedmap_x128, 128);
             Graphic.Resize_Copy(trimedmap, trimedmap_x256, 256);
 
