@@ -1,9 +1,7 @@
 ﻿using Discord.Addons.Interactive;
 using Discord.Commands;
-using Discord.WebSocket;
 using RUMM.Common;
 using RUMM.Method;
-using System;
 using System.IO;
 using System.Linq;
 using System.Net;
