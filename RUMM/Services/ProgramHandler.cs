@@ -7,6 +7,7 @@ using Discord.Addons.Hosting;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
+using RUMM.Common;
 using RUMM.Method;
 
 namespace RUMM.Services
@@ -79,7 +80,7 @@ namespace RUMM.Services
 
         private async Task OnCommandExecuted(Optional<CommandInfo> command, ICommandContext context, IResult result)
         {
-            if (command.IsSpecified && !result.IsSuccess) await context.Channel.SendMessageAsync($"Error: {result}");
+            if (command.IsSpecified && !result.IsSuccess) await (context.Channel as ISocketMessageChannel).SendErrorAsync("エラー", $"以下のエラーが起きちゃった..:\r{result}");
         }
     }
 }

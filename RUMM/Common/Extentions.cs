@@ -9,7 +9,7 @@ namespace RUMM.Common
         public static async Task<IMessage> SendSuccessAsync(this ISocketMessageChannel channel, string title, string description)
         {
             var embed = new EmbedBuilder()
-                .WithColor(new Color(22, 194, 242))
+                .WithColor(new Color(0, 212, 89))
                 .WithDescription(description)
                 .WithAuthor(author =>
                 {
@@ -26,7 +26,7 @@ namespace RUMM.Common
         public static async Task<IMessage> SendErrorAsync(this ISocketMessageChannel channel, string title, string description)
         {
             var embed = new EmbedBuilder()
-                .WithColor(new Color(22, 194, 242))
+                .WithColor(new Color(221, 30, 30))
                 .WithDescription(description)
                 .WithAuthor(author =>
                 {
@@ -60,7 +60,7 @@ namespace RUMM.Common
         public static async Task<IMessage> SendVerifyAsync(this ISocketMessageChannel channel, string title, string description)
         {
             var embed = new EmbedBuilder()
-                .WithColor(new Color(22, 194, 242))
+                .WithColor(new Color(192, 57, 43))
                 .WithDescription(description)
                 .WithAuthor(author =>
                 {
