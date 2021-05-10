@@ -44,6 +44,11 @@ namespace RUMM.Services
             Setup.CreateSetupFolder(id.ToString());
 
             await _client.SetStatusAsync(UserStatus.Online);
+
+            await _client.GetGuild(id).GetUser(_client.CurrentUser.Id).ModifyAsync(x =>
+            {
+                x.Nickname = "[r.] 要らむ";
+            });
         }
 
         private async Task OnLeftGuild(SocketGuild arg)
