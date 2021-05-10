@@ -5,7 +5,7 @@ namespace RUMM.Method
 {
     public class Setup
     {
-        public static void CreateSetupFolder(string id)
+        public static void CreateSetupFolder(ulong id)
         {
             string serverfolder = $@"R:\Project\RUMM.warehouse\{id}";
 
@@ -56,7 +56,7 @@ namespace RUMM.Method
             FileSafe.SafeCreateFile_and_Write(trimmode_txt, defaulttrimmode);
         }
 
-        public static void DeleteSetupFolder(string id)
+        public static void DeleteSetupFolder(ulong id)
         {
             string serverfolder = $@"R:\Project\RUMM.warehouse\{id}";
 

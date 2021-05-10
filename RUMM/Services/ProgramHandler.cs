@@ -39,14 +39,12 @@ namespace RUMM.Services
         }
 
         private async Task OnJoinedGuild(SocketGuild arg)
-        {
-            var id = (arg as SocketGuild).Id;
-            
-            Setup.CreateSetupFolder(id.ToString());
+        {   
+            Setup.CreateSetupFolder(arg.Id);
 
             await _client.SetStatusAsync(UserStatus.Online);
 
-            await _client.GetGuild(id).GetUser(_client.CurrentUser.Id).ModifyAsync(x =>
+            await _client.GetGuild(arg.Id).GetUser(_client.CurrentUser.Id).ModifyAsync(x =>
             {
                 x.Nickname = "[r.] 要らむ";
             });
@@ -54,9 +52,7 @@ namespace RUMM.Services
 
         private async Task OnLeftGuild(SocketGuild arg)
         {
-            var id = (arg as SocketGuild).Id;
-
-            Setup.DeleteSetupFolder(id.ToString());
+            Setup.DeleteSetupFolder(arg.Id);
 
             await _client.SetStatusAsync(UserStatus.Online);
         }
