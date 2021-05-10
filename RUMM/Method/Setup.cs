@@ -48,11 +48,11 @@ namespace RUMM.Method
 
             //中心座標変更テキストファイルの作成・書き込み
             string recentercoord = "0\r\n0";
-            FileSafe.SafeCreateFile_and_Write(recenter_txt, recentercoord);
+            Safe.SafeCreateFile_and_Write(recenter_txt, recentercoord);
 
             //切り取りモードテキストファイルの作成・書き込み
             string defaulttrimmode = "0";
-            FileSafe.SafeCreateFile_and_Write(trimmode_txt, defaulttrimmode);
+            Safe.SafeCreateFile_and_Write(trimmode_txt, defaulttrimmode);
         }
 
         public static void DeleteSetupFolder(ulong id)
