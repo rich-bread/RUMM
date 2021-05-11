@@ -28,7 +28,7 @@ namespace RUMM.Modules.Integration.Original
             string compmap_backup_path = $@"{completedfolder_map_backup}\{DateTime.Now.ToString("yyyyMMdd")}.png";
 
             //特定のサーバーからこのコマンドが実行されないようにする
-            if (Context.Guild.Id == 1)
+            if (Context.Guild.Id == 725704901652381718)
             {
                 await Context.Channel.SendErrorAsync("エラー", $"このコマンドは`{Context.Guild.Name}`では使えないよ！");
                 return;
