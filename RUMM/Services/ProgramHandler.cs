@@ -59,7 +59,7 @@ namespace RUMM.Services
 
         private async Task OnReady()
         {
-            await _client.SetGameAsync("v0.2.0", null, ActivityType.Playing);
+            await _client.SetGameAsync("r.help | v0.2.0", null, ActivityType.Playing);
         }
 
         private async Task OnMessageReceived(SocketMessage arg)
