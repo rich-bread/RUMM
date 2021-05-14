@@ -11,8 +11,7 @@ namespace RUMM.Modules.Integration
 
         public async Task About(string command)
         {
-            ulong oserverid = (Context.Guild as SocketGuild).Id;
-            int serverid = (int)oserverid;
+            ulong serverid = Context.Guild.Id;
 
             string name, description;
 
@@ -170,6 +169,8 @@ namespace RUMM.Modules.Integration
                 .AddField("エリアの登録・削除等", "◦エリアの登録 `r." + command + " add {areaname}`" +
                                                   "\r\n◦エリアの削除 `r." + command + " delete {areaname}`" +
                                                   "\r\n◦エリアのダウンロード `r." + command + " download {areaname}`")
+                .AddField("エリアに登録されている地図の確認", "◦座標一覧表 `r." + command + " {areaname} list text`" +
+                                                              "\r\n◦座標付きエリア地図 `r." + command + " {areaname} list map`")
                 .AddField("地図のエリア登録・削除等", "◦エリアへの地図登録 `r." + command + " {areaname} add {x} {z}`" +
                                                       "\r\n◦エリアから地図削除 `r." + command + " {areaname} delete {x} {z}`");
             }
