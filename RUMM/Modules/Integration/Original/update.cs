@@ -133,6 +133,7 @@ namespace RUMM.Modules.Integration.Original
                     string trimedfolder_map_backup_foreach = $@"{trimedfolder_map_backup}\{mapxcoord},{mapzcoord}";
                     string trimedmap_backup = $@"{trimedfolder_map_backup_foreach}\{DateTime.Now.ToString("yyyyMMdd")}.png";
 
+                    Directory.CreateDirectory(trimedfolder_map_backup_foreach);
                     File.Copy(premapnum, trimedmap, true);
                     File.Copy(premapnum, trimedmap_backup, true);
 

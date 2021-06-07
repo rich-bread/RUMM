@@ -18,7 +18,7 @@ namespace RUMM.Method
                 //「データ」フォルダー作成
                 DirectoryInfo datamain = mainfolder.CreateSubdirectory("Data");                                     //「データ」全体フォルダー
                 DirectoryInfo data_recenter = datamain.CreateSubdirectory("Recenter");                              //「データ」中心座標フォルダー
-                DirectoryInfo data_trimmode = datamain.CreateSubdirectory("Trimmode");                              //「データ」切り取りモードフォルダー
+                DirectoryInfo data_trimmode = datamain.CreateSubdirectory("Definemode");                            //「データ」切り取りモードフォルダー
                 DirectoryInfo data_area = datamain.CreateSubdirectory("Area");                                      //「データ」エリアフォルダー
 
                 //「アップロード」フォルダー作成
@@ -44,7 +44,7 @@ namespace RUMM.Method
 
             //データ用テキストファイルの宣言
             string recenter_txt = $@"{serverfolder}\Data\Recenter\recenter.txt";
-            string trimmode_txt = $@"{serverfolder}\Data\Trimmode\trimmode.txt";
+            string trimmode_txt = $@"{serverfolder}\Data\Definemode\definemode.txt";
 
             //中心座標変更テキストファイルの作成・書き込み
             string recentercoord = "0\r\n0";

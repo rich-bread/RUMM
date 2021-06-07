@@ -13,6 +13,18 @@ namespace RUMM.Modules.Integration.Original
 {
     public class area : InteractiveBase<SocketCommandContext>
     {
+        [Command("area")]
+
+        public async Task AreaList(string option)
+        {
+            switch (option)
+            {
+                case "list":
+                    
+                    break;
+            }
+        }
+
         [Command ("area", RunMode = RunMode.Async)]
 
         public async Task AreaOption(string option, string areaname)
@@ -22,7 +34,8 @@ namespace RUMM.Modules.Integration.Original
 
             string datafolder = $@"{serverfolder}\Data";
             string datafolder_area = $@"{datafolder}\Area";
-            string area_text = $@"{datafolder_area}\{areaname}.txt";
+            string area_datafolder = $@"{datafolder_area}\{areaname}";
+            string area_text = $@"{area_datafolder}\{areaname}.txt";
 
             string trimedfolder = $@"{serverfolder}\Trimed";
             string trimedfolder_map = $@"{trimedfolder}\TrimedMap";
@@ -32,20 +45,13 @@ namespace RUMM.Modules.Integration.Original
             string areafolder_backup = $@"{completedfolder}\AreaMap\{areaname}\{areaname}[Backup]";
             string area_completedmap = $@"{areafolder}\{areaname}.png";
             string area_completedmap_backup = $@"{areafolder_backup}\{DateTime.Now.ToString("yyyyMMdd")}.png";
-            string area_completedmap_list = $@"{areafolder}\{areaname}[list].png";
-
-            //特定のサーバーからこのコマンドが実行されないようにする
-            if (Context.Guild.Id == 725704901652381718)
-            {
-                await Context.Channel.SendErrorAsync("エラー", $"このコマンドは`{Context.Guild.Name}`では使えないよ！");
-                return;
-            }
 
             switch (option)
             {
                 case "add":
-                    if (!File.Exists(area_text))
+                    if (!Directory.Exists(area_datafolder))
                     {
+                        Safe.CreateDirectory(area_datafolder);
                         Safe.CreateDirectory(areafolder);
                         Safe.CreateDirectory(areafolder_backup);
 
@@ -97,6 +103,13 @@ namespace RUMM.Modules.Integration.Original
                     break;
 
                 case "download":
+                    //特定のサーバーからこのコマンドが実行されないようにする
+                    if (Context.Guild.Id == 725704901652381718)
+                    {
+                        await Context.Channel.SendErrorAsync("エラー", $"このコマンドは`{Context.Guild.Name}`では使えないよ！");
+                        return;
+                    }
+
                     if (File.Exists(area_text))
                     {
                         Integrate.Original_Area(area_text, trimedfolder_map, area_completedmap);
@@ -109,13 +122,15 @@ namespace RUMM.Modules.Integration.Original
                         await Context.Channel.SendErrorAsync("エラー", $"そんな名前のエリアはないよ...? \r\n `r.area add {areaname}`でエリアを追加してみよ！");
                     break;
 
-                case "coord":
+                //Realm3rd用引数
+                case "rdownload":
                     if (File.Exists(area_text))
                     {
-                        Integrate.Original_Area_WithCoord(area_text, trimedfolder_map, area_completedmap_list);
+                        Integrate.Designed_Realm3rd_Area(area_text, trimedfolder_map, area_completedmap);
+                        Integrate.Designed_Realm3rd_Area(area_text, trimedfolder_map, area_completedmap_backup);
 
-                        await Context.Channel.SendFileAsync(area_completedmap_list);
-                        await Context.Channel.SendSuccessAsync("完了", $"これが{areaname}の座標付き地図だよ！");
+                        await Context.Channel.SendFileAsync(area_completedmap);
+                        await Context.Channel.SendSuccessAsync("完了", $"これが{areaname}の地図だよ！");
                     }
                     else
                         await Context.Channel.SendErrorAsync("エラー", $"そんな名前のエリアはないよ...? \r\n `r.area add {areaname}`でエリアを追加してみよ！");
@@ -136,7 +151,8 @@ namespace RUMM.Modules.Integration.Original
 
             string datafolder = $@"{serverfolder}\Data";
             string datafolder_area = $@"{datafolder}\Area";
-            string area_text = $@"{datafolder_area}\{areaname}.txt";
+            string datafolder_areaname = $@"{datafolder_area}\{areaname}";
+            string area_text = $@"{datafolder_areaname}\{areaname}.txt";
 
             string trimedfolder = $@"{serverfolder}\Trimed";
             string trimedfolder_map = $@"{trimedfolder}\TrimedMap";
@@ -145,32 +161,37 @@ namespace RUMM.Modules.Integration.Original
             string areafolder = $@"{completedfolder}\AreaMap\{areaname}";
             string area_completedmap_list = $@"{areafolder}\{areaname}[list].png";
 
-            if (option == "list")
+            switch (option)
             {
-                switch (choice)
-                {
-                    case "text":
-                        if (File.Exists(area_text))
-                        {
-                            await Context.Channel.SendFileAsync(area_text);
-                            await Context.Channel.SendSuccessAsync("完了", $"{areaname}の座標リストだよ！");
-                        }
-                        else
-                            await Context.Channel.SendErrorAsync("エラー", $"そんな名前のエリアはないよ...? \r\n `r.area add {areaname}`でエリアを追加してみよ！");
-                        break;
+                case "list":
+                    switch (choice)
+                    {
+                        case "text":
+                            if (File.Exists(area_text))
+                            {
+                                await Context.Channel.SendFileAsync(area_text);
+                                await Context.Channel.SendSuccessAsync("完了", $"{areaname}の座標リストだよ！");
+                            }
+                            else
+                                await Context.Channel.SendErrorAsync("エラー", $"そんな名前のエリアはないよ...? \r\n `r.area add {areaname}`でエリアを追加してみよ！");
+                            break;
 
-                    case "map":
-                        if (File.Exists(area_text))
-                        {
-                            Integrate.Original_Area_WithCoord(area_text, trimedfolder_map, area_completedmap_list);
+                        case "map":
+                            if (File.Exists(area_text))
+                            {
+                                Integrate.Original_Area_WithCoord(area_text, trimedfolder_map, area_completedmap_list);
 
-                            await Context.Channel.SendFileAsync(area_completedmap_list);
-                            await Context.Channel.SendSuccessAsync("完了", $"これが{areaname}の座標付き地図だよ！");
-                        }
-                        else
-                            await Context.Channel.SendErrorAsync("エラー", $"そんな名前のエリアはないよ...? \r\n `r.area add {areaname}`でエリアを追加してみよう！");
-                        break;
-                }
+                                await Context.Channel.SendFileAsync(area_completedmap_list);
+                                await Context.Channel.SendSuccessAsync("完了", $"これが{areaname}の座標付き地図だよ！");
+                            }
+                            else
+                                await Context.Channel.SendErrorAsync("エラー", $"そんな名前のエリアはないよ...? \r\n `r.area add {areaname}`でエリアを追加してみよう！");
+                            break;
+                    }
+                    break;
+
+                case "copy":
+                    break;
             }
         }
 
@@ -183,7 +204,8 @@ namespace RUMM.Modules.Integration.Original
 
             string datafolder = $@"{serverfolder}\Data";
             string datafolder_area = $@"{datafolder}\Area";
-            string area_text = $@"{datafolder_area}\{areaname}.txt";
+            string datafolder_areaname = $@"{datafolder_area}\{areaname}";
+            string area_text = $@"{datafolder_areaname}\{areaname}.txt";
 
             switch (option)
             {

@@ -21,7 +21,7 @@ namespace RUMM.Modules.Integration.Original
 
             string datafolder = $@"{serverfolder}\Data";
             string datafolder_recenter = $@"{datafolder}\Recenter";
-            string datafolder_trimmode = $@"{datafolder}\Trimmode";
+            string datafolder_definemode = $@"{datafolder}\Definemode";
 
             string uploadedfolder = $@"{serverfolder}\Uploaded";
             string uploadedfolder_map = $@"{uploadedfolder}\UploadedMap";
@@ -32,7 +32,7 @@ namespace RUMM.Modules.Integration.Original
 
             //データ用テキストファイルの指定
             string recenter_txt = $@"{datafolder_recenter}\recenter.txt";
-            string trimmode_txt = $@"{datafolder_trimmode}\trimmode.txt";
+            string definemode_txt = $@"{datafolder_definemode}\definemode.txt";
 
             string definedmap = $@"{trimedfolder_map}\{x},{z}.png";
 
@@ -108,7 +108,7 @@ namespace RUMM.Modules.Integration.Original
             string x_numbering, z_numbering;
             
             //
-            string trimmode = File.ReadLines(trimmode_txt).First();
+            string trimmode = File.ReadLines(definemode_txt).First();
 
             if (trimmode == "0")
             {
